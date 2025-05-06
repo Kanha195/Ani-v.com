@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Player</title>
+  <style>
+    body { background: #000; margin: 0; padding: 20px; color: white; font-family: 'Open Sans', sans-serif; }
+    #videoPlayer { width: 100%; max-height: 80vh; background: black; }
+    #episodeInfo { margin: 15px 0; font-size: 20px; }
+    #episodeNav { display: flex; justify-content: space-between; margin-top: 20px; }
+    button { background: #49C628; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; }
+    button:hover { background: #3bb11f; }
+  </style>
+</head>
+<body>
+  <video id="videoPlayer" controls autoplay></video>
+  <div id="episodeInfo"></div>
+  <div id="episodeNav">
+    <button id="prevEpisode">Previous</button>
+    <button id="nextEpisode">Next</button>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const title = urlParams.get('title');
+    const id = urlParams.get('id');
+    const index = parseInt(urlParams.get('index'));
+
+    const video = document.getElementById('videoPlayer');
+    const info = document.getElementById('episodeInfo');
+    const prev = document.getElementById('prevEpisode');
+    const next = document.getElementById('nextEpisode');
+
+    video.src = `https://drive.google.com/uc?export=download&id=${id}`;
+    info.textContent = `${title} - Episode ${index}`;
+
+    const episodeMap = {
+      "1": "1TAZU4PaTNA9A3cNrgr9shlEd1hMaFCg2",
+      "2": "1P7TuSJKJVFYKKZHEbCg4ogkORToVTd0Q",
+      "3": "1zJeEEHKOsyUSQUsrvMzolNOaf3qXhtH8",
+      "4": "1VqhmYLTzr-Ikh157HOPmWMlzdAggv2vC",
+      "5": "1nR0F1lW0n9ntp-e2Tlv0gk7RwyZoUvEi"
+    };
+
+    prev.addEventListener('click', () => {
+      if (index > 1) {
+        const newId = episodeMap[index - 1];
+        if (newId) {
+          window.location.href = `player.html?title=${encodeURIComponent(title)}&id=${newId}&index=${index - 1}`;
+        }
+      }
+    });
+
+    next.addEventListener('click', () => {
+      const newId = episodeMap[index + 1];
+      if (newId) {
+        window.location.href = `player.html?title=${encodeURIComponent(title)}&id=${newId}&index=${index + 1}`;
+      }
+    });
+  </script>
+</body>
+</html>

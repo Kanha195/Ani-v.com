@@ -1,0 +1,49 @@
+/* Row Item Hover Effects */
+.row-item:hover {
+  transform: scale(1.15);
+  z-index: 5;
+}
+
+.row-item:hover img {
+  transform: scale(1.05);
+}
+
+.row-item:hover .item-overlay {
+  opacity: 1;
+}
+
+/* Button Hover Effects */
+.play-btn:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 5px 20px rgba(112, 245, 112, 0.5) !important;
+}
+
+.info-btn:hover {
+  transform: scale(1.05) !important;
+}
+
+/* Search Result Hover */
+.search-result:hover {
+  background: rgba(112, 245, 112, 0.1) !important;
+}
+
+/* Navigation Link Hover */
+nav ul li a:hover {
+  color: var(--primary-green) !important;
+  text-shadow: 0 0 5px rgba(112, 245, 112, 0.5);
+}
+
+/* Smooth Transitions */
+.row-item, .play-btn, .info-btn, nav ul li a, .search-result, .footer-links a {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Banner Text Animation */
+.banner-content {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Carousel Navigation */
+.row-nav {
+  transition: all 0.3s ease;
+}

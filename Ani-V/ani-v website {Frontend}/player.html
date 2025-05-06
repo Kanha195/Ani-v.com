@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Now Playing</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      height: 100vh;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const imdb = params.get("imdb");
+
+    if (imdb) {
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://vidsrc.me/embed/tv?imdb=${imdb}`;
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = "origin";
+      document.body.appendChild(iframe);
+    } else {
+      document.body.innerHTML = "<h1 style='color:white;text-align:center'>No IMDb ID Found</h1>";
+    }
+  </script>
+</body>
+</html>
